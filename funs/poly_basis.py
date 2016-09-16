@@ -1,13 +1,8 @@
 
 # coding: utf-8
 
-# In[138]:
-
 import numpy as np
-from itertools import combinations, product
-
-
-# In[139]:
+from itertools import product
 
 def pad(X):
     '''
@@ -21,9 +16,6 @@ def pad(X):
     padded[:,1:] = X
     return padded
 
-
-# In[140]:
-
 def unique_rows(a):
     '''
     http://stackoverflow.com/questions/8560440/removing-duplicate-columns-and-rows-from-a-numpy-2d-array
@@ -31,9 +23,6 @@ def unique_rows(a):
     a = np.ascontiguousarray(a)
     unique_a = np.unique(a.view([('', a.dtype)]*a.shape[1]))
     return unique_a.view(a.dtype).reshape((unique_a.shape[0], a.shape[1]))
-
-
-# In[141]:
 
 def column_products(X, Y):
     '''
@@ -48,9 +37,6 @@ def column_products(X, Y):
     a = np.array([col1 * col2 for (col1, col2) in product(X.T, Y.T)]).T
     return unique_rows(a.T).T
 
-
-# In[168]:
-
 def polynomial_basis(X, m):
     '''
     construct a polynomial basis of degree m from a data set X. 
@@ -61,9 +47,3 @@ def polynomial_basis(X, m):
     '''
     X = pad(X)
     return reduce(column_products, list(X for i in range(m)))
-
-
-# In[ ]:
-
-
-

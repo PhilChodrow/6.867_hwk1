@@ -6,7 +6,7 @@ import pylab as pl
 # Y is a Nx1 column vector of data values
 
 def getData(name):
-    data = pl.loadtxt(name)
+    data = pl.loadtxt('data/P3/' + name)
     # Returns column matrices
     X = data[0:1].T
     Y = data[1:2].T

@@ -5,7 +5,7 @@ def getData(ifPlotData=True):
     # load the fitting data and (optionally) plot out for examination
     # return the X and Y as a tuple
 
-    data = pl.loadtxt('curvefittingp2.txt')
+    data = pl.loadtxt('data/P2/curvefittingp2.txt')
 
     X = data[0,:]
     Y = data[1,:]

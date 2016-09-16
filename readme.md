@@ -6,7 +6,7 @@ TODO:
 - [ ] Problem 2
 - [ ] Problem 3
     - [x] Implement polynomial basis generation
-    - [ ] Class for ridge regression -- train and predict
+    - [x] Class for ridge regression -- train and predict
     - [ ] Make plots  
 - [ ] Problem 4
 - [ ] Writeup

@@ -40,3 +40,4 @@ def GradientSSE(theta,X,Y):
 def GradientSSEPoint(theta_t,x,y):
     return 2*(np.dot(np.array(x).T,np.array(theta_t))-y)*np.array(x)
 
+

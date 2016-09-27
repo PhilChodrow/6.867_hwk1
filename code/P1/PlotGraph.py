@@ -30,4 +30,4 @@ def PlotGraph3D(title,Function,Path,*args):
 #    ax.set_zlabel('Z Label')
     ax.set_title(title)
 
-    #plt.show()
+    plt.show()

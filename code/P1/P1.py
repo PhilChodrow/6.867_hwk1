@@ -19,7 +19,7 @@ if __name__ == '__main__':
     print "Starting with the gaussian function"
     GaussGradPath,GaussOpt = GradientDescent.GradientDescent(Functions.GaussianFunc,
                                                             Functions.GradientGaussianFunc,[-10,10],StepSize,
-                                                            Error,gaussMean,gaussCov)
+                                                            Error,0,0,gaussMean,gaussCov)
     ##Function serface + path - Gaussian
     #PlotGraph.PlotGraph3D("Gaussian", Functions.GaussianFunc,GaussGradPath,gaussMean,gaussCov)
     #
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     # for StepSize in range(1,10):
     #     GaussGradPath, GaussOpt = GradientDescent.GradientDescent(Functions.GaussianFunc,
     #                                                               Functions.GradientGaussianFunc, [-10, 10], math.exp(StepSize),
-    #                                                               Error, gaussMean, gaussCov)
+    #                                                               Error, 0,0,gaussMean, gaussCov)
     #     ConvergenceRate.append(len(GaussGradPath))
     # ##Convergence as a function of the stepsize - Gaussian
     # xes=range(1,10)
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     #     GaussGradPath, GaussOpt = GradientDescent.GradientDescent(Functions.GaussianFunc,
     #                                                               Functions.GradientGaussianFunc, [-10, 10],
     #                                                               StepSize,
-    #                                                               math.exp(Error), gaussMean, gaussCov)
+    #                                                               math.exp(Error), 0,0,gaussMean, gaussCov)
     #     ConvergenceRate.append(len(GaussGradPath))
     # ##Convergence as a function of the error - Gaussian
     # xes=range(1,10)
@@ -52,15 +52,16 @@ if __name__ == '__main__':
     # plt.subplot(211)
     # plt.plot(xes, ConvergenceRate)
     #
-
-    StepSize = 0.1
-    Error = 0.00001
-    print "Quadratic Bowl"
-    QuadraticBowlGradPath, QuadraticBowlOpt=GradientDescent.GradientDescent(Functions.QuadraticBowlFunc,Functions.GradientQuadraticBowlFunc,[20,-10],StepSize,Error,quadBowlA,quadBowlb)
-    print QuadraticBowlOpt
-    print QuadraticBowlGradPath
-    ##Function serface + path - Quadratic Bowl
-    #PlotGraph.PlotGraph3D("Quadratic Bowl",Functions.QuadraticBowlFunc, QuadraticBowlGradPath, quadBowlA,quadBowlb)
+    #
+    # StepSize = 0.1
+    # Error = 0.00001
+    # print "Quadratic Bowl"
+    # QuadraticBowlGradPath, QuadraticBowlOpt=GradientDescent.GradientDescent(Functions.QuadraticBowlFunc,
+    #                                           Functions.GradientQuadraticBowlFunc,[20,-10],StepSize,Error,0,0,quadBowlA,quadBowlb)
+    # print QuadraticBowlOpt
+    # print QuadraticBowlGradPath
+    # ##Function serface + path - Quadratic Bowl
+    # PlotGraph.PlotGraph3D("Quadratic Bowl",Functions.QuadraticBowlFunc, QuadraticBowlGradPath, quadBowlA,quadBowlb)
 
 
     ##PART 2:
@@ -84,16 +85,16 @@ if __name__ == '__main__':
 
     ##PART 3:
     ##=======
-    Error=math.exp(-15)
+    Error=math.exp(-20)
     Kappa=0.75
     tau0=math.exp(20)
     X,Y=loadFittingDataP1.getData()
     StartingPoint=np.zeros(len(X[0]))
     start_time = time.time()
-    SGDPath,SGDOpt=SGD.SGD(StartingPoint, tau0, Kappa, Error, X, Y)
+    SGDPath,SGDOpt=SGD.SGD(Functions.SSE,Functions.GradientSSEPoint,StartingPoint, tau0, Kappa, Error, 0,0,X, Y)
     SGDElapsedTime=time.time() - start_time
     start_time = time.time()
-    BatchPath,BatchOpt=GradientDescent.GradientDescent(Functions.SSE,Functions.GradientSSE,StartingPoint,(tau0**(-Kappa)),Error, X, Y)
+    BatchPath,BatchOpt=GradientDescent.GradientDescent(Functions.SSE,Functions.GradientSSE,StartingPoint,(tau0**(-Kappa)),Error,0,0, X, Y)
     BatchElapsedTime=time.time() - start_time
     NumberOfIterSGD=len(SGDPath)/len(X)
     NumberOfIterBatch=len(BatchPath)

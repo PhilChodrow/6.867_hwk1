@@ -24,7 +24,7 @@ if __name__ == '__main__':
         for j in xes:
             fun.append(MaxLikelihoodEstimator.EstimateFunction(j,W_ML,m,"p"))
         plt.plot(xes, fun)
-    #plt.show()
+    plt.show()
 
     ##PART 2:
     ##=======
@@ -37,34 +37,16 @@ if __name__ == '__main__':
     tau0 = math.exp(10)
     StartingPoint = 0
     start_time = time.time()
-    SGDPath, SGDOpt = SGD.SGD(StartingPoint, tau0, Kappa, Error, X, Y)
+    SGDPath, SGDOpt = SGD.SGD(Functions.SSE,Functions.GradientSSEPoint,StartingPoint, tau0, Kappa, Error,0,0, X, Y)
     SGDElapsedTime = time.time() - start_time
     start_time = time.time()
     BatchPath, BatchOpt = GradientDescent.GradientDescent(Functions.SSE, Functions.GradientSSE, StartingPoint,
-                                                          (tau0 ** (-Kappa)), Error, X, Y)
+                                                          (tau0 ** (-Kappa)), Error, 0,0,X, Y)
     BatchElapsedTime = time.time() - start_time
     NumberOfIterSGD = len(SGDPath) / len(X)
     NumberOfIterBatch = len(BatchPath)
     print "Batch: running time is ", BatchElapsedTime, "Num of iterations is ", NumberOfIterBatch, "Final optimum is ", BatchOpt
     print "SGD: running time is ", SGDElapsedTime, "Num of iterations is ", NumberOfIterSGD, "Final optimum is ", SGDOpt
-    SGDConvergenceRate=[]
-    BatchConvergenceRate=[]
-    for Error in range(1, 10):
-        start_time = time.time()
-        SGDPath, SGDOpt = SGD.SGD(StartingPoint, tau0, Kappa, Error, X, Y)
-        SGDElapsedTime = time.time() - start_time
-        SGDConvergenceRate.append(SGDElapsedTime)
-        start_time = time.time()
-        BatchPath, BatchOpt = GradientDescent.GradientDescent(StartingPoint, tau0, Kappa, Error, X, Y)
-        BatchElapsedTime = time.time() - start_time
-        BatchConvergenceRate.append(BatchElapsedTime)
-
-    ##Convergence as a function of the error -Batch
-    xes = range(1, 10)
-    plt.figure(1)
-    plt.subplot(211)
-    plt.plot(xes, SGDConvergenceRate,xes,BatchConvergenceRate)
-
 
     ##PART 4:
     ##=======

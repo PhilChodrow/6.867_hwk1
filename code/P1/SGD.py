@@ -3,7 +3,7 @@ import numpy as np
 import math
 import Functions
 
-def SGD(Function,GradientPoint,theta0,tau0,Kappa,Error,Cheating,CeatingVal,X,Y):
+def SGD(Function,GradientPoint,theta0,tau0,Kappa,Error,Cheating,CeatingVal,X,Y, max_iters = 10000):
     theta_curr = theta0
     theta = [theta_curr]
     t=0
@@ -23,7 +23,7 @@ def SGD(Function,GradientPoint,theta0,tau0,Kappa,Error,Cheating,CeatingVal,X,Y):
         if abs(Function(theta_curr,X,Y)-BaseVal)<Error:
             #print J(theta_curr, X, Y)
             break
-        if t>len(X)*10000:
+        if t>max_iters:
             print "doesn't converge"
             break
     return theta,Function(theta_curr,X,Y)

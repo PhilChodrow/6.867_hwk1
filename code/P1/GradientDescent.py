@@ -1,4 +1,4 @@
-def GradientDescent(Function,Gradient,StartingPoint,StepSize,Error,Cheating,CeatingVal,*args):
+def GradientDescent(Function,Gradient,StartingPoint,StepSize,Error,Cheating,CeatingVal,max_iters = 10000, *args):
     x_curr=StartingPoint
     x=[x_curr]
     while True:
@@ -10,8 +10,8 @@ def GradientDescent(Function,Gradient,StartingPoint,StepSize,Error,Cheating,Ceat
             BaseVal=CeatingVal
         if abs(Function(x_curr,*args)-BaseVal)<Error:
             #print (Function(x_curr, *args))
-            break
-        if len(x)>10000:
+            break   
+        if len(x)>max_iters:
             print "not converging"
             break
     return x,Function(x_curr,*args)

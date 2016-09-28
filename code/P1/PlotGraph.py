@@ -4,10 +4,14 @@ import matplotlib.pyplot as plt
 import random
 from matplotlib import cm
 
-def PlotGraph3D(title,Function,Path,*args):
-    fig = plt.figure()
+
+def PlotGraph3D(title, Function, Path,*args):
+    fig = plt.figure(figsize=(15, 10))
     ax = fig.add_subplot(111, projection='3d')
-    x = y = np.arange(-10, 50, 0.05)
+    # ax = fig.add_subplot(111)
+    # x = y = np.arange(-70, 80, 0.1)
+    y = np.arange(-100, 150, 0.1)
+    x = np.arange(-80, 150, 0.1)
     X, Y = np.meshgrid(x, y)
     xPath = []
     yPath = []
@@ -18,16 +22,12 @@ def PlotGraph3D(title,Function,Path,*args):
         yPath.append(Path[i][1])
         zPath.append(Function([xPath[i], yPath[i]], *args))
 
-
-    ax.plot(xPath, yPath, zPath,'-b')
-
-    zs = np.array([Function([x, y],*args) for x, y in zip(np.ravel(X), np.ravel(Y))])
+    ax.plot(xPath, yPath, zPath, color="blue", linewidth=2.5)
+    ax.plot(xPath[0::10], yPath[0::10], zPath[0::10], 'o')
+    zs = np.array([Function([x, y], *args) for x, y in zip(np.ravel(X), np.ravel(Y))])
     Z = zs.reshape(X.shape)
 
-    ax.plot_surface(X, Y, Z,cmap=cm.winter, alpha=0.2)
-#    ax.set_xlabel('X Label')
-#    ax.set_ylabel('Y Label')
-#    ax.set_zlabel('Z Label')
+    # ax.pcolor(X, Y, Z, cmap=cm.winter, alpha=0.2)
+    ax.contour(X, Y, Z, 15)
     ax.set_title(title)
-
-    plt.show()
+    fig.savefig(title+'.png')

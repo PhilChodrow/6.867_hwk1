@@ -20,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="P1.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="P1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/P1/P1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="144" column="1" selection-start-line="141" selection-start-column="0" selection-end-line="144" selection-end-column="1" />
+            <state relative-caret-position="650">
+              <caret line="40" column="58" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -32,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="P4.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="P4.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/P4/P4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+            <state relative-caret-position="528">
+              <caret line="82" column="49" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="49" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -133,7 +133,6 @@
         <option value="$PROJECT_DIR$/code/P1/PlotGraph.py" />
         <option value="$PROJECT_DIR$/code/P2/MaxLikelihoodEstimator.py" />
         <option value="$PROJECT_DIR$/code/P1/FiniteDifferenceApproximation.py" />
-        <option value="$PROJECT_DIR$/code/P1/P1.py" />
         <option value="$PROJECT_DIR$/code/P2/P2.py" />
         <option value="$PROJECT_DIR$/code/P4/RgularizedFunctions.py" />
         <option value="$PROJECT_DIR$/code/P4/LASSO.py" />
@@ -143,6 +142,7 @@
         <option value="$PROJECT_DIR$/code/P4/RegularizedFunctions.py" />
         <option value="$PROJECT_DIR$/code/P3/P3.py" />
         <option value="$PROJECT_DIR$/code/P4/P4.py" />
+        <option value="$PROJECT_DIR$/code/P1/P1.py" />
       </list>
     </option>
   </component>
@@ -301,7 +301,7 @@
       <pane id="Scope" />
     </panes>
   </component>
-  <component name="RunManager" selected="Python.P4">
+  <component name="RunManager" selected="Python.P1">
     <configuration default="false" name="P1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -512,10 +512,10 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.P4" />
-        <item index="1" class="java.lang.String" itemvalue="Python.P3" />
-        <item index="2" class="java.lang.String" itemvalue="Python.P2" />
-        <item index="3" class="java.lang.String" itemvalue="Python.P1" />
+        <item index="0" class="java.lang.String" itemvalue="Python.P1" />
+        <item index="1" class="java.lang.String" itemvalue="Python.P4" />
+        <item index="2" class="java.lang.String" itemvalue="Python.P3" />
+        <item index="3" class="java.lang.String" itemvalue="Python.P2" />
       </list>
     </recent_temporary>
   </component>
@@ -541,7 +541,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23462783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23462783" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -922,16 +922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/P1/P1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="144" column="1" selection-start-line="141" selection-start-column="0" selection-end-line="144" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/P3/P3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
@@ -942,10 +932,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/P4/P4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+        <state relative-caret-position="528">
+          <caret line="82" column="49" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="49" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/P1/P1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="40" column="58" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>

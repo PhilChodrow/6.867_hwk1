@@ -18,27 +18,27 @@ if __name__ == '__main__':
     [gaussMean, gaussCov, quadBowlA, quadBowlb] = loadParametersP1.getData()
     # GAUSSIAN:
     print "Q1.1 - Gaussian"
-    StepSizes = range(6, 15)
-    StepSize = math.exp(10)
-    Error = math.exp(-40)
-    Errors = range(-25, -2)
-    GaussGradPath, GaussOpt, GradNormGauss = GradientDescent.GradientDescent(Functions.GaussianFunc,
-                                                                             Functions.GradientGaussianFunc,
-                                                                             [-70, 80], StepSize, Error,
-                                                                             0, 0, 100000, gaussMean, gaussCov)
+    # StepSizes = range(6, 15)
+    # StepSize = math.exp(10)
+    # Error = math.exp(-40)
+    # Errors = range(-25, -2)
+    # GaussGradPath, GaussOpt, GradNormGauss = GradientDescent.GradientDescent(Functions.GaussianFunc,
+    #                                                                          Functions.GradientGaussianFunc,
+    #                                                                          [-70, 80], StepSize, Error,
+    #                                                                          0, 0, 100000, gaussMean, gaussCov)
     # print "Gaussian - Function surface + path - Gaussian"
     # PlotGraph.PlotGraph3D("Gaussian Function and the Gradient Descent Path", Functions.GaussianFunc, GaussGradPath,
     #                       gaussMean, gaussCov)
 
-    # print "Gaussian - convergence of the gradient"
-    xes = range(0, len(GradNormGauss))
-    plt.figure(figsize=(15, 10))
-    plt.subplot()
-    plt.plot(xes, GradNormGauss)
-    plt.xlabel('Iteration')
-    plt.ylabel('Second Norm of the Gradient')
-    plt.title('Gradient Norm Convergence rate - Gaussian')
-    plt.savefig('Gradient Norm Convergence rate - Gaussian.png')
+    # # print "Gaussian - convergence of the gradient"
+    # xes = range(0, len(GradNormGauss))
+    # plt.figure(figsize=(15, 10))
+    # plt.subplot()
+    # plt.plot(xes, GradNormGauss)
+    # plt.xlabel('Iteration')
+    # plt.ylabel('Second Norm of the Gradient')
+    # plt.title('Gradient Norm Convergence rate - Gaussian')
+    # plt.savefig('Gradient Norm Convergence rate - Gaussian.png')
     # # print "Gaussian - convergence - different points"
     # ConvergenceRate = np.zeros((10, 10))
     # for x in range(0, 10):
@@ -225,8 +225,8 @@ if __name__ == '__main__':
     # #
     # #
     # #
-    # # # ##PART 2:
-    # # # ##=======
+    # # ##PART 2:
+    # # ##=======
     # x = y = np.arange(-100, 100, 0.1)
     # GradApprox = []
     # for i in range(0, 1000000):
@@ -243,27 +243,46 @@ if __name__ == '__main__':
     # plt.ylabel('Cumulative Amount')
     # plt.title('Cumulative Gradient Error')
     # plt.savefig('Cumulative Gradient Error.png')
-    # # #
-    # # #
-    # # #
 
-    # ##PART 3:
-    # ##=======
+    GradApprox=[]
+    x=y=0
+    for h in np.arange(0, 1, 0.1):
+        Err = Functions.GradientGaussianFunc([x, y], gaussMean, gaussCov) - \
+              FiniteDifferenceApproximation.FiniteDifferenceApproximation \
+                  ([x, y], h, Functions.GaussianFunc, gaussMean, gaussCov)
+        GradApprox.append(math.sqrt(np.dot(np.array(Err).T, np.array(Err))))
+
+    plt.figure(figsize=(15, 10))
+    plt.subplot()
+    plt.plot( np.arange(0, 1, 0.1), GradApprox)
+    plt.xlabel('h')
+    plt.ylabel('Gradient Estimator SSE')
+    plt.title('Gradient Estimator SSE')
+    plt.savefig('Gradient Estimator SSE.png')
+    # #
+    # #
+    # #
+
+    ##PART 3:
+    ##=======
     # Error=math.exp(-20)
     # Kappa=0.75
     # tau0=math.exp(20)
     # X,Y=loadFittingDataP1.getData()
     # StartingPoint=np.zeros(len(X[0]))
     # start_time = time.time()
-    # SGDPath,SGDOpt=SGD.SGD(Functions.SSE,Functions.GradientSSEPoint,StartingPoint, tau0, Kappa, Error, 0,0,X, Y)
+    # SGDPath,SGDOpt=SGD.SGD(Functions.SSE,Functions.GradientSSEPoint,StartingPoint, tau0, Kappa, Error, 0,0,X, Y,100000)
     # SGDElapsedTime=time.time() - start_time
     # start_time = time.time()
-    # BatchPath,BatchOpt=GradientDescent.GradientDescent(Functions.SSE,Functions.GradientSSE,StartingPoint,(tau0**(-Kappa)),Error,0,0, X, Y)
+    # BatchPath,BatchOpt,gradpath=GradientDescent.GradientDescent(Functions.SSE,Functions.GradientSSE,StartingPoint,
+    #                                                    (tau0**(-Kappa)),Error,0,0, 100000,X, Y)
     # BatchElapsedTime=time.time() - start_time
     # NumberOfIterSGD=len(SGDPath)/len(X)
     # NumberOfIterBatch=len(BatchPath)
+    # print "Kappa: ",Kappa,"tau0: ",tau0
+    #
     # print "Batch: running time is ", BatchElapsedTime, "Num of iterations is ",NumberOfIterBatch, "Final optimum is ",BatchOpt
     # print "SGD: running time is ", SGDElapsedTime, "Num of iterations is ", NumberOfIterSGD, "Final optimum is ", SGDOpt
     #
-    #
-    #
+
+

@@ -39,7 +39,7 @@ def BuildBasedData(x,M,type):
         DataSet = []
         for i in range(0, len(x)):
             DataPoint = [x[i]]
-            for j in range(1, M):
+            for j in range(1, M+1):
                 DataPoint.append(math.cos(math.pi * x[i] * j))
             DataSet.append(DataPoint)
         return DataSet

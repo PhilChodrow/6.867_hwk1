@@ -14,7 +14,6 @@ def Validate(DataSetXTrain, DataSetYTrain, DataSetXVal, DataSetYVal,Lamdas,Ms,Rg
         for m in Ms:
             XBassedTrain = BaseHandler.BuildBasedData(DataSetXTrain,m,type)
             XBassedVal = BaseHandler.BuildBasedData(DataSetXVal,m,type)
-            print XBassedTrain
             Inter,W,RSQ = RgularizedFunction(XBassedTrain, DataSetYTrain, XBassedVal, DataSetYVal, Lambda)
             # print "Lambda is ",Lambda, "M is", m, "RSQ is" ,RSQ
             if RSQ < BestRSQ:

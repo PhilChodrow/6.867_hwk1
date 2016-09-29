@@ -4,6 +4,7 @@ import ValidateParams
 import RegularizedFunctions
 import lassoData
 import matplotlib
+import math
 import sys
 sys.path.append('../')
 import BaseHandler
@@ -13,8 +14,7 @@ if __name__ == '__main__':
     XTrain, YTrain = lassoData.lassoTrainData()
     XVal, YVal = lassoData.lassoValData()
     XTest,YTest=lassoData.lassoTestData()
-    InterTrue=0.000000000000000000e+00
-    wTrue=[ 0.000000000000000000e+00,5.646300000000000100e+00,7.785999999999999600e-01,
+    wTrue=[ 0.000000000000000000e+00,0.000000000000000000e+00,5.646300000000000100e+00,7.785999999999999600e-01,
            0.000000000000000000e+00,8.108999999999999500e-01,2.682700000000000100e+00,0.000000000000000000e+00,
             0.000000000000000000e+00,0.000000000000000000e+00,0.000000000000000000e+00, 0.000000000000000000e+00,
             0.000000000000000000e+00 ]
@@ -37,18 +37,21 @@ if __name__ == '__main__':
     xBassed = BaseHandler.BuildBasedData(x, MNoReg, "s")
     yNoReg = InterNoReg + np.dot(np.array(xBassed), np.array(WNoReg))
 
-    xBassed = BaseHandler.BuildBasedData(x, 12, "s")
-    yTrue=InterTrue+ np.dot(np.array(xBassed), np.array(wTrue))
+    xBassed = BaseHandler.BuildBasedData(x, 13, "s")
+    yTrue= np.dot(np.array(xBassed), np.array(wTrue))
     plt.figure(figsize=(15, 10))
     plt.subplot()
     plt.plot(x, yLASSO, label='LASSO' )
     plt.plot(x, yRIDGE, label='Ridge')
     plt.plot(x, yTrue, label='True Function')
     plt.plot(x, yNoReg, label='Lambda = 0')
-    plt.legend( loc=1, borderaxespad=0.)
+    plt.legend( loc=4, borderaxespad=0.)
     plt.plot(XTrain,YTrain,'o',label='Train Data')
     plt.plot(XVal, YVal,'s',label='Val Data')
     plt.plot(XTest,YTest, '^',label='Test Data')
+    plt.xlabel('x')
+    plt.ylabel('y(x)')
+    plt.title('Estimation of the function for the optimal parameters')
     plt.savefig('Estimated Functions.png')
 
     # Plot w as a function of lambda:
@@ -74,14 +77,17 @@ if __name__ == '__main__':
         #print lasso
         plt.plot(Lambdas,lasso,'--')
         plt.plot(Lambdas, ridge, )
+    plt.xlabel('Lambda')
+    plt.ylabel('w')
+    plt.title('W as a function of Lambda')
     plt.savefig('Ws as a function of Lambda.png')
 
     #plot weights
-    InterLASSO, WLASSO, LambdaLASSO, MLASSO = ValidateParams.Validate(XTrain, YTrain, XVal, YVal, Lambdas, [12],
+    InterLASSO, WLASSO, LambdaLASSO, MLASSO = ValidateParams.Validate(XTrain, YTrain, XVal, YVal, Lambdas, [13],
                                                                       RegularizedFunctions.LASSO, "s")
-    InterRIDGE, WRIDGE, LambdaRIDGE, MRIDGE = ValidateParams.Validate(XTrain, YTrain, XVal, YVal, Lambdas, [12],
+    InterRIDGE, WRIDGE, LambdaRIDGE, MRIDGE = ValidateParams.Validate(XTrain, YTrain, XVal, YVal, Lambdas, [13],
                                                                       RegularizedFunctions.Ridge, "s")
-    InterNoReg, WNoReg, LambdaRIDGE, MRIDGE = ValidateParams.Validate(XTrain, YTrain, XVal, YVal, [0], [12],
+    InterNoReg, WNoReg, LambdaRIDGE, MRIDGE = ValidateParams.Validate(XTrain, YTrain, XVal, YVal, [0], [13],
                                                                       RegularizedFunctions.Ridge, "s")
     plt.figure(figsize=(15, 10))
     plt.subplot(221)

@@ -28,12 +28,17 @@ def BuildBasedDataCos(x,M):
     return DataSet
 
 def BuildBasedData(x,M,FuncrType):
+    if FuncrType == "n":
+        return x
     if FuncrType == "p":
         DataSet=[]
         for i in range(0,len(x)):
-            DataPoint=[]
+            DataPoint=[1]
             for j in range(0,M):
-                DataPoint.append(x[i][0]**j)
+                if type(x[i]) is numpy.float64:
+                    DataPoint.append(x[i]**j)
+                else:
+                    DataPoint.append(x[i][0]**j)
             DataSet.append(DataPoint)
         return DataSet
     if FuncrType =="c":

@@ -1,4 +1,5 @@
 import math
+import numpy
 def BuildBasedDataPoli(x,M):
     DataSet=[]
     for i in range(0,len(x)):
@@ -26,16 +27,16 @@ def BuildBasedDataCos(x,M):
         DataSet.append(DataPoint)
     return DataSet
 
-def BuildBasedData(x,M,type):
-    if type == "p":
+def BuildBasedData(x,M,FuncrType):
+    if FuncrType == "p":
         DataSet=[]
         for i in range(0,len(x)):
             DataPoint=[]
             for j in range(0,M):
-                 DataPoint.append(x[i]**j)
+                DataPoint.append(x[i][0]**j)
             DataSet.append(DataPoint)
         return DataSet
-    if type =="c":
+    if FuncrType =="c":
         DataSet = []
         for i in range(0, len(x)):
             DataPoint = [x[i]]
@@ -43,11 +44,14 @@ def BuildBasedData(x,M,type):
                 DataPoint.append(math.cos(math.pi * x[i] * j))
             DataSet.append(DataPoint)
         return DataSet
-    if type == "s":
+    if FuncrType == "s":
         DataSet = []
         for i in range(0, len(x)):
-            DataPoint = [x[i][0]]
-            for j in range(1, 12):
+            if (type(x[i]) is numpy.float64):
+                DataPoint = [x[i]]
+            else:
+                DataPoint = [x[i][0]]
+            for j in range(1, M):
                 DataPoint.append(math.sin(0.4 * math.pi * x[i] * j))
             DataSet.append(DataPoint)
         return DataSet

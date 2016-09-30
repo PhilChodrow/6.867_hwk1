@@ -52,7 +52,7 @@ if __name__ == '__main__':
         GradApprox.append(math.sqrt(np.dot(np.array(Err).T, np.array(Err))))
     counts, bin_edges = np.histogram(GradApprox, bins=100, normed=True)
     cdf = np.cumsum(counts)/counts.sum()
-    
+    print np.mean(np.cumsum(counts)/counts.sum())
     plt.plot(bin_edges[1:], cdf)
     plt.xlabel('Squared Error')
     plt.ylabel('Cumulative Amount')
@@ -60,57 +60,57 @@ if __name__ == '__main__':
     plt.savefig('Cumulative Gradient Error.png')
     #
     #
-    # # PART 3:
-    # # =======
-    StartingPoint=0
-    StepSizes = range(-25, -5)
-    Errors = range(-20, 0)
-    Tau0s = range(0, 15)
-    BatchConvergenceRate = np.zeros((len(Errors), len(StepSizes)))
-    SGDConvergenceRate = np.zeros((len(Errors), len(Tau0s)))
-    for Error in range(0, len(Errors)):
-        for StepSize in range(0, len(StepSizes)):
-            print Error, ",", StepSize, ",", time.time()
-            BatchGradPath, BatchOpt, BatchGradNorm = GradientDescent.GradientDescent(Functions.SSE,
-                                                                                     Functions.GradientSSE,
-                                                                                     StartingPoint,
-                                                                                     math.exp(StepSizes[StepSize]),
-                                                                                     math.exp(Errors[Error]), 0, 0,
-                                                                                     1000000, X, Y)
-            BatchConvergenceRate[Error, StepSize] = len(BatchGradNorm)
-        for tau0 in range(0,len(Tau0s)):
-            BatchGradPath, BatchOpt = SGD.SGD(Functions.SSE,
-                                                             Functions.GradientSSEPoint,
-                                                             StartingPoint,
-                                                             math.exp(Tau0s[tau0]),
-                                                             0.75,
-                                                             math.exp(Errors[Error]), 0, 0,
-                                                             X, Y)
-            SGDConvergenceRate[Error, tau0] = len(BatchGradPath)
-
-    # plt.figure(figsize=(15, 10))
-    # plt.subplot()
-    # plt.xlabel('ln(Precision Level)')
-    # plt.ylabel('ln(Learning Rate)')
-    # plt.title('Convergence as a Function of the Precision Level and the Learning Rate - Batchl')
-    # plt.xticks(range(0, len(StepSizes)), StepSizes)
-    # plt.yticks(range(0, len(Errors)), Errors)
-    # plt.pcolor(BatchConvergenceRate)
-    # plt.colorbar()
-    # plt.savefig('Convergence as a Function of the Precision Level and the Learning Rate - Batch.png')
-
-    # plt.figure(figsize=(15, 10))
-    # plt.subplot()
-    # plt.xlabel('ln(Precision Level)')
-    # plt.ylabel('ln(Learning Rate)')
-    # plt.title('Convergence as a Function of the Precision Level and the Learning Rate - SGD')
-    # plt.xticks(range(0, len(Tau0s)), Tau0s)
-    # plt.yticks(range(0, len(Errors)), Errors)
-    # plt.pcolor(SGDConvergenceRate)
-    # plt.colorbar()
-    # plt.savefig('Convergence as a Function of the Precision Level and the Learning Rate - SGD.png')
-
-    # PART 4:
+    # # # PART 3:
+    # # # =======
+    # StartingPoint=0
+    # StepSizes = range(-25, -5)
+    # Errors = range(-20, 0)
+    # Tau0s = range(0, 15)
+    # BatchConvergenceRate = np.zeros((len(Errors), len(StepSizes)))
+    # SGDConvergenceRate = np.zeros((len(Errors), len(Tau0s)))
+    # for Error in range(0, len(Errors)):
+    #     for StepSize in range(0, len(StepSizes)):
+    #         print Error, ",", StepSize, ",", time.time()
+    #         BatchGradPath, BatchOpt, BatchGradNorm = GradientDescent.GradientDescent(Functions.SSE,
+    #                                                                                  Functions.GradientSSE,
+    #                                                                                  StartingPoint,
+    #                                                                                  math.exp(StepSizes[StepSize]),
+    #                                                                                  math.exp(Errors[Error]), 0, 0,
+    #                                                                                  1000000, X, Y)
+    #         BatchConvergenceRate[Error, StepSize] = len(BatchGradNorm)
+    #     for tau0 in range(0,len(Tau0s)):
+    #         BatchGradPath, BatchOpt = SGD.SGD(Functions.SSE,
+    #                                                          Functions.GradientSSEPoint,
+    #                                                          StartingPoint,
+    #                                                          math.exp(Tau0s[tau0]),
+    #                                                          0.75,
+    #                                                          math.exp(Errors[Error]), 0, 0,
+    #                                                          X, Y)
+    #         SGDConvergenceRate[Error, tau0] = len(BatchGradPath)
+    #
+    # # plt.figure(figsize=(15, 10))
+    # # plt.subplot()
+    # # plt.xlabel('ln(Precision Level)')
+    # # plt.ylabel('ln(Learning Rate)')
+    # # plt.title('Convergence as a Function of the Precision Level and the Learning Rate - Batchl')
+    # # plt.xticks(range(0, len(StepSizes)), StepSizes)
+    # # plt.yticks(range(0, len(Errors)), Errors)
+    # # plt.pcolor(BatchConvergenceRate)
+    # # plt.colorbar()
+    # # plt.savefig('Convergence as a Function of the Precision Level and the Learning Rate - Batch.png')
+    #
+    # # plt.figure(figsize=(15, 10))
+    # # plt.subplot()
+    # # plt.xlabel('ln(Precision Level)')
+    # # plt.ylabel('ln(Learning Rate)')
+    # # plt.title('Convergence as a Function of the Precision Level and the Learning Rate - SGD')
+    # # plt.xticks(range(0, len(Tau0s)), Tau0s)
+    # # plt.yticks(range(0, len(Errors)), Errors)
+    # # plt.pcolor(SGDConvergenceRate)
+    # # plt.colorbar()
+    # # plt.savefig('Convergence as a Function of the Precision Level and the Learning Rate - SGD.png')
+    #
+    # # PART 4:
     # =======
     xes = np.arange(0.0, 1, 0.0001)
     plt.figure(figsize=(15, 10))

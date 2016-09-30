@@ -229,7 +229,7 @@ if __name__ == '__main__':
     # # ##=======
     # x = y = np.arange(-100, 100, 0.1)
     # GradApprox = []
-    # for i in range(0, 1000000):
+    # for i in range(0, 10000):
     #     SampledPointX = random.randint(0, len(x)-1)
     #     SampledPointY = random.randint(0, len(x)-1)
     #     Err = Functions.GradientGaussianFunc([x[SampledPointX], y[SampledPointY]], gaussMean, gaussCov) - \
@@ -237,52 +237,53 @@ if __name__ == '__main__':
     #                       ([x[SampledPointX], y[SampledPointY]], 0.1, Functions.GaussianFunc, gaussMean, gaussCov)
     #     GradApprox.append(math.sqrt(np.dot(np.array(Err).T, np.array(Err))))
     # counts, bin_edges = np.histogram(GradApprox, bins=100, normed=True)
-    # cdf = np.cumsum(counts)
+    # cdf = np.cumsum(counts)/counts.sum()
+    # counts.sum()
     # plt.plot(bin_edges[1:], cdf)
     # plt.xlabel('Squared Error')
     # plt.ylabel('Cumulative Amount')
     # plt.title('Cumulative Gradient Error')
     # plt.savefig('Cumulative Gradient Error.png')
 
-    GradApprox=[]
-    x=y=0
-    for h in np.arange(0, 1, 0.1):
-        Err = Functions.GradientGaussianFunc([x, y], gaussMean, gaussCov) - \
-              FiniteDifferenceApproximation.FiniteDifferenceApproximation \
-                  ([x, y], h, Functions.GaussianFunc, gaussMean, gaussCov)
-        GradApprox.append(math.sqrt(np.dot(np.array(Err).T, np.array(Err))))
-
-    plt.figure(figsize=(15, 10))
-    plt.subplot()
-    plt.plot( np.arange(0, 1, 0.1), GradApprox)
-    plt.xlabel('h')
-    plt.ylabel('Gradient Estimator SSE')
-    plt.title('Gradient Estimator SSE')
-    plt.savefig('Gradient Estimator SSE.png')
-    # #
-    # #
-    # #
+    # GradApprox=[]
+    # x=y=0
+    # for h in np.arange(0, 1, 0.1):
+    #     Err = Functions.GradientGaussianFunc([x, y], gaussMean, gaussCov) - \
+    #           FiniteDifferenceApproximation.FiniteDifferenceApproximation \
+    #               ([x, y], h, Functions.GaussianFunc, gaussMean, gaussCov)
+    #     GradApprox.append(math.sqrt(np.dot(np.array(Err).T, np.array(Err))))
+    #
+    # plt.figure(figsize=(15, 10))
+    # plt.subplot()
+    # plt.plot( np.arange(0, 1, 0.1), GradApprox)
+    # plt.xlabel('h')
+    # plt.ylabel('Gradient Estimator SSE')
+    # plt.title('Gradient Estimator SSE')
+    # plt.savefig('Gradient Estimator SSE.png')
+    # # #
+    # # #
+    # # #
 
     ##PART 3:
     ##=======
-    # Error=math.exp(-20)
-    # Kappa=0.75
-    # tau0=math.exp(20)
-    # X,Y=loadFittingDataP1.getData()
-    # StartingPoint=np.zeros(len(X[0]))
-    # start_time = time.time()
-    # SGDPath,SGDOpt=SGD.SGD(Functions.SSE,Functions.GradientSSEPoint,StartingPoint, tau0, Kappa, Error, 0,0,X, Y,100000)
-    # SGDElapsedTime=time.time() - start_time
-    # start_time = time.time()
-    # BatchPath,BatchOpt,gradpath=GradientDescent.GradientDescent(Functions.SSE,Functions.GradientSSE,StartingPoint,
-    #                                                    (tau0**(-Kappa)),Error,0,0, 100000,X, Y)
-    # BatchElapsedTime=time.time() - start_time
-    # NumberOfIterSGD=len(SGDPath)/len(X)
-    # NumberOfIterBatch=len(BatchPath)
-    # print "Kappa: ",Kappa,"tau0: ",tau0
-    #
-    # print "Batch: running time is ", BatchElapsedTime, "Num of iterations is ",NumberOfIterBatch, "Final optimum is ",BatchOpt
-    # print "SGD: running time is ", SGDElapsedTime, "Num of iterations is ", NumberOfIterSGD, "Final optimum is ", SGDOpt
-    #
+    Error=math.exp(-20)
+    Kappa=0.75
+    tau0=math.exp(25)
+    X,Y=loadFittingDataP1.getData()
+    StartingPoint=np.zeros(len(X[0]))
+    start_time = time.time()
+    SGDPath,SGDOpt=SGD.SGD(Functions.SSE,Functions.GradientSSEPoint,StartingPoint, tau0, Kappa, Error, 0,0,X, Y,10000000)
+    SGDElapsedTime=time.time() - start_time
+    start_time = time.time()
+    BatchPath,BatchOpt,gradpath=GradientDescent.GradientDescent(Functions.SSE,Functions.GradientSSE,StartingPoint,
+                                                       (tau0**(-Kappa)),Error,0,0, 100000,X, Y)
+    BatchElapsedTime=time.time() - start_time
+    NumberOfIterSGD=len(SGDPath)/len(X)
+    NumberOfIterBatch=len(BatchPath)
+    print "Kappa: ",Kappa,"tau0: ",tau0
+
+    print "Batch: running time is ", BatchElapsedTime, "Num of iterations is ",NumberOfIterBatch, "Final optimum is ",BatchOpt
+    print "SGD: running time is ", SGDElapsedTime, "Num of iterations is ", NumberOfIterSGD, "Final optimum is ", SGDOpt
+
 
 
